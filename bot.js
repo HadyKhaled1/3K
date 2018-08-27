@@ -21,7 +21,7 @@ const gif = require("gif-search");
 
 const client = new Discord.Client({disableEveryone: true});
 
-const prefix = "#";
+const prefix = "!";
 /////////////////////////
 ////////////////////////
 
@@ -36,7 +36,7 @@ client.on('message', async msg =>{
 
     if(command === `ping`) {
     let embed = new Discord.RichEmbed()
-    .setColor(3447003)
+    .setColor(RANDOM)
     .setTitle("Pong!!")
     .setDescription(`${client.ping} ms,`)
     .setFooter(`Requested by | ${msg.author.tag}`);
@@ -150,7 +150,7 @@ client.on('message', async msg => {
                     .setDescription(`
                     ${videos.map(video2 => `${++index}. **${video2.title}**`).join('\n')}`)
                     
-					.setColor("#00FF00")
+					.setColor("#f7abab")
 					msg.channel.sendEmbed(embed1).then(message =>{message.delete(20000)})
 					
 /////////////////					
@@ -312,26 +312,28 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`**${song.title}**, is now playing!`);
 }
 
-client.on('ready', () => {
-     client.user.setActivity("#help",{type: '3KServer'});
 
-});
 client.on('message', message => {
     if (message.content === '#help') {
         let helpEmbed = new Discord.RichEmbed()
         .setTitle('**أوامر الميوزك...**')
         .setDescription('**برفكس البوت (!)**')
         .addField('#play', 'لتشغيل اغنية')
-        .addField('#join', 'دخول رومك الصوتي')
+        .addField("#join', 'دخول رومك الصوتي')
         .addField('#disconnect', 'الخروج من رومك الصوتي')
         .addField('#skip', 'تخطي الأغنية')
         .addField('#pause', 'ايقاف الاغنية مؤقتا')
         .addField('#resume', 'تكملة الاغنية')
         .addField('#queue', 'اظهار قائمة التشغيل')
         .addField('#np', 'اظهار الاغنية اللي انت مشغلها حاليا')
-        .setFooter('تم إنشاء البوت من قبل Hady Khaled')
+        .setFooter('تم برمجة البوت من قبل Hady Khaled')
       message.channel.send(helpEmbed);
     }
+});
+
+client.on('ready', () => {
+     client.user.setActivity("#help",{type: 'Playing'});
+
 });
 
 client.on('message', message => {
