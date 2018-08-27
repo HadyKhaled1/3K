@@ -63,12 +63,12 @@ client.on('message', async msg =>{
           let sicon = msg.author.avatarURL
           let embed = new Discord.RichEmbed()
           .setImage(msg.author.avatarURL)
-          .setColor("#5074b3")
+          .setColor("RANDOM")
           msg.channel.send({embed})
         } else {
           let sicon = mentions.user.avatarURL
           let embed = new Discord.RichEmbed()
-          .setColor("#00FF00")
+          .setColor("RANDOM")
           .setImage(sicon)
           msg.channel.send({embed})
         }
@@ -312,21 +312,24 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`**${song.title}**, is now playing!`);
 }
 
+client.on('ready', () => {
+     client.user.setActivity("#help",{type: '3KServer'});
 
+});
 client.on('message', message => {
-    if (message.content === 'help') {
+    if (message.content === '#help') {
         let helpEmbed = new Discord.RichEmbed()
         .setTitle('**أوامر الميوزك...**')
         .setDescription('**برفكس البوت (!)**')
-        .addField('play', 'لتشغيل اغنية')
-        .addField('join', 'دخول رومك الصوتي')
-        .addField('disconnect', 'الخروج من رومك الصوتي')
-        .addField('skip', 'تخطي الأغنية')
-        .addField('pause', 'ايقاف الاغنية مؤقتا')
-        .addField('resume', 'تكملة الاغنية')
-        .addField('queue', 'اظهار قائمة التشغيل')
-        .addField('np', 'اظهار الاغنية اللي انت مشغلها حاليا')
-        .setFooter('(general_commands) لاظهار الاوامر العامة')
+        .addField('#play', 'لتشغيل اغنية')
+        .addField('#join', 'دخول رومك الصوتي')
+        .addField('#disconnect', 'الخروج من رومك الصوتي')
+        .addField('#skip', 'تخطي الأغنية')
+        .addField('#pause', 'ايقاف الاغنية مؤقتا')
+        .addField('#resume', 'تكملة الاغنية')
+        .addField('#queue', 'اظهار قائمة التشغيل')
+        .addField('#np', 'اظهار الاغنية اللي انت مشغلها حاليا')
+        .setFooter('تم إنشاء البوت من قبل Hady Khaled')
       message.channel.send(helpEmbed);
     }
 });
